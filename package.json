@@ -1,0 +1,44 @@
+{
+  "name": "vue-builder",
+  "version": "1.0.0",
+  "description": "Server-side and client-side rendering for Vue.js.",
+  "main": "./src/index.js",
+  "ava": {
+    "files": [
+      "./tests/*.js"
+    ],
+    "concurrency": 1,
+    "failFast": true
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpepermint/vue-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xpepermint/vue-builder/issues"
+  },
+  "homepage": "https://github.com/xpepermint/vue-builder#readme",
+  "keywords": [
+    "vue",
+    "webpack",
+    "render",
+    "rendering",
+    "server",
+    "client",
+    "side",
+    "ssr",
+    "build",
+    "building",
+    "builder"
+  ],
+  "author": "Kristijan Sedlak (Xpepermint)",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0"
+  },
+  "pearDependencies": {
+  }
+}
