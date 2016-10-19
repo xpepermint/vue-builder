@@ -1,6 +1,6 @@
 ![Build Status](https://travis-ci.org/xpepermint/vue-builder.svg?branch=master)&nbsp;[![NPM Version](https://badge.fury.io/js/contextable.svg)](https://badge.fury.io/js/contextable)&nbsp;[![Dependency Status](https://gemnasium.com/xpepermint/vue-builder.svg)](https://gemnasium.com/xpepermint/vue-builder)
 
-# [vue](http://vuejs.org)-[webpack](https://webpack.github.io)
+# [vue](http://vuejs.org)-[builder](https://webpack.github.io)
 
 > Server-side and client-side rendering for Vue.js.
 
@@ -13,14 +13,14 @@ This is an open source package for [Vue.js](http://vuejs.org/). The source code 
 ## Related Projects
 
 * [vue-webpack](https://github.com/xpepermint/vue-webpack): Webpack configuration object generator for Vue.js.
-* [express-vue-ssr](https://github.com/xpepermint/express-vue-ssr): Vue.js server-side and client-side rendering middleware for Express.js.
+* [express-vue-builder](https://github.com/xpepermint/express-vue-builder): Vue.js server-side and client-side rendering middleware for Express.js.
 
 ## Install
 
 Run the command below to install the package.
 
 ```
-$ npm install --save-dev vue-builder webpack@2.1.0-beta.25
+$ npm install --save-dev vue-builder babel-core babel-loader babel-preset-es2015 babel-preset-stage-2 css-loader extract-text-webpack-plugin@2.0.0-beta.4 file-loader postcss-cssnext vue vue-loader vue-server-renderer vuex webpack@2.1.0-beta.25 webpack-hot-middleware webpack-manifest-plugin
 ```
 
 ## Usage
@@ -28,18 +28,17 @@ $ npm install --save-dev vue-builder webpack@2.1.0-beta.25
 Start by creating the Webpack configuration object. Here we use the [vue-webpack](https://github.com/xpepermint/vue-webpack) package to create one.
 
 ```js
-import {build as vueWebpack} from 'vue-webpack';
+import {build} from 'vue-webpack';
 
-let config = vueWebpack.build({
+let config = build({
   env: process.env.NODE_ENV || 'development',
   mode: 'server',
-  entryFilePath: './src/client/server-entry.js',
-  outputFileName: 'bundle',
+  inputFilePath: './src/client/server-entry.js',
   outputPath: './dist'
 });
 ```
 
-Create a new Webpack compiler instance.
+Create a `builder` instance.
 
 ```js
 import webpack from 'webpack';
@@ -59,22 +58,21 @@ builder.renderToString((html) => {}); // rendered application code as string
 
 ## API
 
-**VueBuilder(options)**
+**VueBuilder(config)**
 
-> Core class for server-side and client-side rendering.
-
-| Option | Type | Required | Default | Description
-|--------|------|----------|---------|------------
-| compiler | Object | Yes | - | Webpack compiler instance.
-
-**VueBuilder.prototype.(options)**
-
-> Core class for server-side and client-side rendering.
+> Core class for building server-side and client-side bundles.
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
-| compiler | Object | Yes | - | Webpack compiler instance.
+| config | Object | Yes | - | Webpack configuration object.
 
+**VueRender({source})**
+
+> Core class for server-side application rendering.
+
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| source | String | Yes | - | Bundle source code.
 
 ## License (MIT)
 
