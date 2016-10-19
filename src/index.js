@@ -41,7 +41,7 @@ exports.VueBuilder = class {
   * the source code as string.
   */
 
-  render () {
+  compile () {
     return new Promise((resolve, reject) => {
       let mfs = new MemoryFS();
       let config = Object.assign({}, this._config); // webpack modifies input

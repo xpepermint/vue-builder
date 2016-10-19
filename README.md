@@ -59,7 +59,7 @@ const builder = new VueBuilder(config);
 // build application to ./dist
 let files = await builder.build();
 // build application entry to string
-let source = await builder.render();
+let source = await builder.compile();
 ```
 
 Use the `VueRender` class to render the application.
@@ -89,9 +89,9 @@ let html = await render.renderToString();
 
 > Returns a promise which saves application files to the destination folder.
 
-**VueBuilder.prototype.render()**:Promise
+**VueBuilder.prototype.compile()**:Promise
 
-> Returns a promise which renders the application bundle and returns the the source code as string.
+> Returns a promise which compiles the application bundle and returns the the source code as string.
 
 **VueRender({source})**
 

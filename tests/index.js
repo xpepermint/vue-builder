@@ -24,7 +24,7 @@ test('VueBuilder.prototype.build', async (t) => {
   t.is(fs.existsSync('../dist/client/bundle.css.map'), true);
 });
 
-test('VueBuilder.prototype.render()', async (t) => {
+test('VueBuilder.prototype.compile', async (t) => {
   let config = build({
     env: 'production',
     mode: 'server',
@@ -34,12 +34,12 @@ test('VueBuilder.prototype.render()', async (t) => {
     outputPath: '../dist/server'
   });
   let builder = new VueBuilder(config);
-  let source = await builder.render();
+  let source = await builder.compile();
 
   t.is(source.indexOf('module.exports=f'), 0);
 });
 
-test('VueRender.prototype.renderToStream()', async (t) => {
+test('VueRender.prototype.renderToStream', async (t) => {
   let config = build({
     env: 'production',
     mode: 'server',
@@ -49,14 +49,14 @@ test('VueRender.prototype.renderToStream()', async (t) => {
     outputPath: '../dist/server'
   });
   let builder = new VueBuilder(config);
-  let source = await builder.render();
+  let source = await builder.compile();
   let render = new VueRender({source});
   let stream = render.renderToStream();
 
   t.is(!!stream.pipe, true);
 });
 
-test('VueRender.prototype.renderToString()', async (t) => {
+test('VueRender.prototype.renderToString', async (t) => {
   let config = build({
     env: 'production',
     mode: 'server',
@@ -66,7 +66,7 @@ test('VueRender.prototype.renderToString()', async (t) => {
     outputPath: '../dist/server'
   });
   let builder = new VueBuilder(config);
-  let source = await builder.render();
+  let source = await builder.compile();
   let render = new VueRender({source});
   let html = await render.renderToString();
 
