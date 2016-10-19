@@ -14,8 +14,7 @@ test('VueBuilder.prototype.build', async (t) => {
     outputPath: '../dist/client',
     publicPath: '/assets/',
   });
-  let compiler = webpack(config);
-  let builder = new VueBuilder({compiler});
+  let builder = new VueBuilder(config);
   await builder.build();
 
   t.is(fs.existsSync('../dist/client/images/logo.png'), true);
@@ -34,8 +33,7 @@ test('VueBuilder.prototype.render()', async (t) => {
     outputFileName: 'bundle',
     outputPath: '../dist/server'
   });
-  let compiler = webpack(config);
-  let builder = new VueBuilder({compiler});
+  let builder = new VueBuilder(config);
   let source = await builder.render();
 
   t.is(source.indexOf('module.exports=f'), 0);
@@ -50,8 +48,7 @@ test('VueRender.prototype.renderToStream()', async (t) => {
     outputFileName: 'bundle',
     outputPath: '../dist/server'
   });
-  let compiler = webpack(config);
-  let builder = new VueBuilder({compiler});
+  let builder = new VueBuilder(config);
   let source = await builder.render();
   let render = new VueRender({source});
   let stream = render.renderToStream();
@@ -68,8 +65,7 @@ test('VueRender.prototype.renderToString()', async (t) => {
     outputFileName: 'bundle',
     outputPath: '../dist/server'
   });
-  let compiler = webpack(config);
-  let builder = new VueBuilder({compiler});
+  let builder = new VueBuilder(config);
   let source = await builder.render();
   let render = new VueRender({source});
   let html = await render.renderToString();
