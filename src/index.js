@@ -17,7 +17,7 @@ exports.VueBuilder = class {
   }
 
   /*
-  * Returns a promise which saves application files to destination folder.
+  * Returns a promise which saves application files to the destination folder.
   */
 
   build () {

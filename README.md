@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/xpepermint/vue-builder.svg?branch=master)&nbsp;[![NPM Version](https://badge.fury.io/js/contextable.svg)](https://badge.fury.io/js/contextable)&nbsp;[![Dependency Status](https://gemnasium.com/xpepermint/vue-builder.svg)](https://gemnasium.com/xpepermint/vue-builder)
+![Build Status](https://travis-ci.org/xpepermint/vue-builder.svg?branch=master)&nbsp;[![NPM Version](https://badge.fury.io/js/vue-builder.svg)](https://badge.fury.io/js/vue-builder)&nbsp;[![Dependency Status](https://gemnasium.com/xpepermint/vue-builder.svg)](https://gemnasium.com/xpepermint/vue-builder)
 
 # [vue](http://vuejs.org)-[builder](https://webpack.github.io)
 
@@ -23,37 +23,56 @@ Run the command below to install the package.
 $ npm install --save-dev vue-builder babel-core babel-loader babel-preset-es2015 babel-preset-stage-2 css-loader extract-text-webpack-plugin@2.0.0-beta.4 file-loader postcss-cssnext vue vue-loader vue-server-renderer vuex webpack@2.1.0-beta.25 webpack-hot-middleware webpack-manifest-plugin
 ```
 
+Create the `./.babelrc` file and configure the presets.
+
+```js
+{
+  "presets": [
+    ["es2015", { "modules": false }],
+    "stage-2"
+  ]
+}
+```
+
 ## Usage
 
 Start by creating the Webpack configuration object. Here we use the [vue-webpack](https://github.com/xpepermint/vue-webpack) package to create one.
 
 ```js
-import {build} from 'vue-webpack';
+const {build} = require('vue-webpack');
 
 let config = build({
   env: process.env.NODE_ENV || 'development',
   mode: 'server',
-  inputFilePath: './src/client/server-entry.js',
+  inputFilePath: './src/app/server-entry.js',
   outputPath: './dist'
 });
 ```
 
-Create a `builder` instance.
+Use the `VueBuilder` class to build and compile the application.
 
 ```js
-import webpack from 'webpack';
+const {VueBuilder} = require('vue-builder');
 
-let compiler = webpack(config);
+const builder = new VueBuilder(config);
+
+// build application to ./dist
+let files = await builder.build();
+// build application entry to string
+let source = await builder.render();
 ```
 
-Create a new builder instance and render the application.
+Use the `VueRender` class to render the application.
 
 ```js
-import {VueBuilder} from 'vue-builder';
+const {VueBuilder} = require('vue-builder');
 
-let builder = new VueBuilder({compiler});
+const render = new VueRender({source}); // source=builder.render()
 
-builder.renderToString((html) => {}); // rendered application code as string
+// render to stream
+let stream = render.renderToStream();
+// render to string
+let html = await render.renderToString();
 ```
 
 ## API
@@ -66,6 +85,14 @@ builder.renderToString((html) => {}); // rendered application code as string
 |--------|------|----------|---------|------------
 | config | Object | Yes | - | Webpack configuration object.
 
+**VueBuilder.prototype.build()**:Promise
+
+> Returns a promise which saves application files to the destination folder.
+
+**VueBuilder.prototype.render()**:Promise
+
+> Returns a promise which renders the application bundle and returns the the source code as string.
+
 **VueRender({source})**
 
 > Core class for server-side application rendering.
@@ -73,6 +100,14 @@ builder.renderToString((html) => {}); // rendered application code as string
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
 | source | String | Yes | - | Bundle source code.
+
+**VueRender.prototype.renderToStream()**:Stream
+
+> Renders the application and returns a stream.
+
+**VueRender.prototype.renderToString()**:Promise
+
+> Returns a promise which renders the application and returns a string.
 
 ## License (MIT)
 
