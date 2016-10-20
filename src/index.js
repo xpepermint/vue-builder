@@ -73,10 +73,10 @@ exports.VueRender = class {
   * Class constructor.
   */
 
-  constructor ({source}) {
+  constructor (source, options={}) {
     process.env.VUE_ENV = 'server';
 
-    this.render = vsr.createBundleRenderer(source);
+    this.render = vsr.createBundleRenderer(source, options);
   }
 
   /*

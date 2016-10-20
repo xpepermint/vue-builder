@@ -70,7 +70,7 @@ Use the `VueRender` class to render the application.
 ```js
 const {VueBuilder} = require('vue-builder');
 
-const render = new VueRender({source}); // source=builder.render()
+const render = new VueRender(source); // source=builder.render()
 
 // render to stream
 let stream = render.renderToStream();
@@ -96,13 +96,14 @@ let html = await render.renderToString();
 
 > Returns a promise which compiles the application bundle and returns the the source code as string.
 
-**VueRender({source})**
+**VueRender(source, options)**
 
 > Core class for server-side application rendering.
 
 | Option | Type | Required | Default | Description
 |--------|------|----------|---------|------------
 | source | String | Yes | - | Bundle source code.
+| options | Object | No | - | [Renderer options](https://www.npmjs.com/package/vue-server-renderer#renderer-options).
 
 **VueRender.prototype.renderToStream()**:Stream
 
