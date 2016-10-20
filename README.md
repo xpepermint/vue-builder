@@ -20,7 +20,8 @@ This is an open source package for [Vue.js](http://vuejs.org/). The source code 
 Run the command below to install the package.
 
 ```
-$ npm install --save-dev vue-builder babel-core babel-loader babel-preset-es2015 babel-preset-stage-2 css-loader extract-text-webpack-plugin@2.0.0-beta.4 file-loader postcss-cssnext vue vue-loader vue-server-renderer vuex webpack@2.1.0-beta.25 webpack-hot-middleware webpack-manifest-plugin
+$ npm install --save-dev vue vue-server-renderer
+$ npm install --save-dev vue-builder
 ```
 
 Create the `./.babelrc` file and configure the presets.
