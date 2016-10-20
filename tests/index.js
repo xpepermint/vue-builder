@@ -50,7 +50,7 @@ test('VueRender.prototype.renderToStream', async (t) => {
   });
   let builder = new VueBuilder(config);
   let source = await builder.compile();
-  let render = new VueRender({source});
+  let render = new VueRender(source);
   let stream = render.renderToStream();
 
   t.is(!!stream.pipe, true);
@@ -67,7 +67,7 @@ test('VueRender.prototype.renderToString', async (t) => {
   });
   let builder = new VueBuilder(config);
   let source = await builder.compile();
-  let render = new VueRender({source});
+  let render = new VueRender(source);
   let html = await render.renderToString();
 
   t.is(typeof html, 'string');
