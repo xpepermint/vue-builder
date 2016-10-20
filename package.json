@@ -1,6 +1,6 @@
 {
   "name": "vue-builder",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Server-side and client-side rendering for Vue.js.",
   "main": "./src/index.js",
   "ava": {
