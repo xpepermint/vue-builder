@@ -83,7 +83,7 @@ exports.VueRender = class {
   * Renders the application and returns a stream.
   */
 
-  renderToStream ({ctx, cache}={}) {
+  renderToStream (ctx={}) {
     let data = this.render.renderToStream(ctx);
 
     data.once('data', (chunk) => data.emit('init', ctx));
@@ -95,7 +95,7 @@ exports.VueRender = class {
   * Returns a promise which renders the application and returns a string.
   */
 
-  renderToString ({ctx, cache}={}) {
+  renderToString (ctx={}) {
     return new Promise((resolve, reject) => {
       this.render.renderToString(ctx, (err, data) => {
         if (err) {

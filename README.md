@@ -105,13 +105,21 @@ let html = await render.renderToString();
 | source | String | Yes | - | Bundle source code.
 | options | Object | No | - | [Renderer options](https://www.npmjs.com/package/vue-server-renderer#renderer-options).
 
-**VueRender.prototype.renderToStream()**:Stream
+**VueRender.prototype.renderToStream(ctx)**:Stream
 
 > Renders the application and returns a stream.
 
-**VueRender.prototype.renderToString()**:Promise
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| ctx | Object | No | {} | Application context object.
+
+**VueRender.prototype.renderToString(ctx)**:Promise
 
 > Returns a promise which renders the application and returns a string.
+
+| Option | Type | Required | Default | Description
+|--------|------|----------|---------|------------
+| ctx | Object | No | {} | Application context object.
 
 ## License (MIT)
 
