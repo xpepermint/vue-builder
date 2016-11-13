@@ -33,8 +33,7 @@ Create the `./.babelrc` file and configure the presets.
 ```js
 {
   "presets": [
-    ["es2015", { "modules": false }],
-    "stage-2"
+    "es2015"
   ]
 }
 ```
