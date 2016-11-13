@@ -20,8 +20,7 @@ test('VueBuilder.prototype.build', async (t) => {
   t.is(fs.existsSync('../dist/client/images/logo.png'), true);
   t.is(fs.existsSync('../dist/client/bundle.js'), true);
   t.is(fs.existsSync('../dist/client/bundle.css'), true);
-  t.is(fs.existsSync('../dist/client/bundle.js.map'), true);
-  t.is(fs.existsSync('../dist/client/bundle.css.map'), true);
+  t.is(fs.existsSync('../dist/client/bundle.json'), true);
 });
 
 test('VueBuilder.prototype.compile', async (t) => {
