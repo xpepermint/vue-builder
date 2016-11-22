@@ -48,7 +48,7 @@ const {build} = require('vue-webpack');
 let config = build({
   env: process.env.NODE_ENV || 'development',
   mode: 'server',
-  inputFilePath: './src/app/server-entry.js',
+  inputFilePath: './src/app/server-entry.js', // absolute path
   outputPath: './dist'
 });
 ```

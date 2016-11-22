@@ -9,18 +9,19 @@ test('VueBuilder.prototype.build', async (t) => {
     env: 'development',
     mode: 'client',
     manifest: true,
-    inputFilePath: './assets/app/client-entry.js',
+    inputFilePath: `${__dirname}/assets/app/client-entry.js`,
     outputFileName: 'bundle',
-    outputPath: '../dist/client',
+    outputPath: `${__dirname}/../dist/client`,
     publicPath: '/assets/',
   });
+
   let builder = new VueBuilder(config);
   await builder.build();
 
-  t.is(fs.existsSync('../dist/client/images/logo.png'), true);
-  t.is(fs.existsSync('../dist/client/bundle.js'), true);
-  t.is(fs.existsSync('../dist/client/bundle.css'), true);
-  t.is(fs.existsSync('../dist/client/bundle.json'), true);
+  t.is(fs.existsSync(`${__dirname}/../dist/client/images/logo.png`), true);
+  t.is(fs.existsSync(`${__dirname}/../dist/client/bundle.js`), true);
+  t.is(fs.existsSync(`${__dirname}/../dist/client/bundle.css`), true);
+  t.is(fs.existsSync(`${__dirname}/../dist/client/bundle.json`), true);
 });
 
 test('VueBuilder.prototype.compile', async (t) => {
@@ -28,9 +29,9 @@ test('VueBuilder.prototype.compile', async (t) => {
     env: 'production',
     mode: 'server',
     manifest: true,
-    inputFilePath: './assets/app/server-entry.js',
+    inputFilePath: `${__dirname}/assets/app/server-entry.js`,
     outputFileName: 'bundle',
-    outputPath: '../dist/server'
+    outputPath: `${__dirname}/../dist/server`
   });
   let builder = new VueBuilder(config);
   let source = await builder.compile();
@@ -43,9 +44,9 @@ test('VueRender.prototype.renderToStream', async (t) => {
     env: 'production',
     mode: 'server',
     manifest: true,
-    inputFilePath: './assets/app/server-entry.js',
+    inputFilePath: `${__dirname}/assets/app/server-entry.js`,
     outputFileName: 'bundle',
-    outputPath: '../dist/server'
+    outputPath: `${__dirname}/../dist/server`
   });
   let builder = new VueBuilder(config);
   let source = await builder.compile();
@@ -60,9 +61,9 @@ test('VueRender.prototype.renderToString', async (t) => {
     env: 'production',
     mode: 'server',
     manifest: true,
-    inputFilePath: './assets/app/server-entry.js',
+    inputFilePath: `${__dirname}/assets/app/server-entry.js`,
     outputFileName: 'bundle',
-    outputPath: '../dist/server'
+    outputPath: `${__dirname}/../dist/server`
   });
   let builder = new VueBuilder(config);
   let source = await builder.compile();
