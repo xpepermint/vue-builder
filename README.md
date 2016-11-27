@@ -10,14 +10,19 @@ This package provides tools for rendering [Vue.js](http://vuejs.org) application
 
 This is an open source package for [Vue.js](http://vuejs.org/). The source code is available on [GitHub](https://github.com/xpepermint/vue-builder) where you can also find our [issue tracker](https://github.com/xpepermint/vue-builder/issues).
 
-## Related Projects
+## Related
 
-* [vue-webpack](https://github.com/xpepermint/vue-webpack): Webpack configuration object generator for Vue.js.
+### Packages
+
 * [express-vue-builder](https://github.com/xpepermint/express-vue-builder): Vue.js server-side rendering middleware for Express.js.
 * [express-vue-dev](https://github.com/xpepermint/express-vue-dev): Vue.js development server middleware for Express.js.
 * [koa-vue-builder](https://github.com/kristianmandrup/koa-vue-builder): Vue.js server-side rendering middleware for Koa.js.
 * [koa-vue-dev](https://github.com/kristianmandrup/koa-vue-dev): Vue.js development server middleware for Koa.js.
 * [vue-cli-template](https://github.com/xpepermint/vue-cli-template): A simple server-side rendering CLI template for Vue.js.
+
+### Examples
+
+* [vue-example](https://github.com/xpepermint/vue-example): Vue.js example application
 
 ## Install
 
@@ -28,38 +33,16 @@ $ npm install --save-dev vue vue-server-renderer
 $ npm install --save-dev vue-builder
 ```
 
-Create the `./.babelrc` file and configure the presets.
-
-```js
-{
-  "presets": [
-    "es2015"
-  ]
-}
-```
-
 ## Usage
 
-Start by creating the Webpack configuration object. Here we use the [vue-webpack](https://github.com/xpepermint/vue-webpack) package to create one.
+Create a Webpack configuration object then use the `VueBuilder` class to build and compile the application.
 
 ```js
-const {build} = require('vue-webpack');
-
-let config = build({
-  env: process.env.NODE_ENV || 'development',
-  mode: 'server',
-  inputFilePath: './src/app/server-entry.js', // absolute path
-  outputPath: './dist'
-});
-```
-
-Use the `VueBuilder` class to build and compile the application.
-
-```js
+const config = require('./webpack.config.js'); /* your webpack configuration */
 const {VueBuilder} = require('vue-builder');
 
+// create Vue.js builder
 const builder = new VueBuilder(config);
-
 // build application to ./dist
 let files = await builder.build();
 // build application entry to string
@@ -71,8 +54,8 @@ Use the `VueRender` class to render the application.
 ```js
 const {VueBuilder} = require('vue-builder');
 
+// create Vue.js renderer
 const render = new VueRender(source); // source=builder.render()
-
 // render to stream
 let stream = render.renderToStream();
 // render to string
