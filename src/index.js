@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const vsr = require('vue-server-renderer');
 const MemoryFS = require('memory-fs');
 
@@ -23,6 +22,7 @@ exports.VueBuilder = class {
   build () {
     return new Promise((resolve, reject) => {
       let config = Object.assign({}, this._config); // webpack modifies input
+      let webpack = require("webpack");
 
       let compiler = webpack(config);
       compiler.run((err, stats) => {
@@ -45,6 +45,7 @@ exports.VueBuilder = class {
     return new Promise((resolve, reject) => {
       let mfs = new MemoryFS();
       let config = Object.assign({}, this._config); // webpack modifies input
+      let webpack = require("webpack");
 
       let compiler = webpack(config);
       compiler.outputFileSystem = mfs;
