@@ -1,6 +1,6 @@
 {
   "name": "vue-builder",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Server-side and client-side rendering for Vue.js.",
   "main": "./src/index.js",
   "ava": {
@@ -53,6 +53,6 @@
     "vue-server-renderer": "^2.1.0"
   },
   "dependencies": {
-    "memory-fs": "^0.3.0"
+    "memory-fs": "^0.4.1"
   }
 }
